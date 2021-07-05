@@ -17,26 +17,26 @@ float xrot = 0;
 float yrot = 0;
 float xdiff = 0;
 float ydiff = 0;
-float gesertranslasi = 0;
-float gesertranslasi2 = 0;
+float pindah1 = 0;
+float pindah2 = 0;
 bool mousedown = false;
 int is_depth;
 
 void timer(int value)
 {
 
-    if (gesertranslasi == 0) {
-        gesertranslasi = -25;
+    if (pindah1 == 0) {
+        pindah1 = -25;
     }
-    else if (gesertranslasi == -25) {
-        gesertranslasi = 0;
+    else if (pindah1 == -25) {
+        pindah1 = 0;
     }
 
-    if (gesertranslasi2 == 0) {
-        gesertranslasi2 = 25;
+    if (pindah2 == 0) {
+        pindah2 = 25;
     }
-    else if (gesertranslasi2 == 25) {
-        gesertranslasi2 = 0;
+    else if (pindah2 == 25) {
+        pindah2 = 0;
     }
 
     glutPostRedisplay();
@@ -87,10 +87,9 @@ void display(void)
     glRotatef(xrot, 1, 0, 0);
     glRotatef(yrot, 0, 1, 0);
 
-    /// <summary>
+ 
     /// ///////////////////////////////////////alas/////////////////////////////
-    /// </summary>
-    /// <param name=""></param>
+
     glBegin(GL_POLYGON);//alas
     glColor3f(0.0, 0.6, 1.0);
     glVertex3f(-400, -1, -200); // kiri atas
@@ -2897,7 +2896,7 @@ void display(void)
 
 
     glPushMatrix();
-    glTranslatef(-1.0, 0.0, gesertranslasi2);
+    glTranslatef(-1.0, 0.0, pindah2);
     glBegin(GL_QUADS);//pintu kampus kiri
     glColor3f(0.702f, 0.29f, 0.0f);
     glVertex3f(-300, 0, 0);
@@ -2915,7 +2914,7 @@ void display(void)
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(-1.0, 0.0, gesertranslasi);
+    glTranslatef(-1.0, 0.0, pindah1);
     glBegin(GL_QUADS);//pintu kampus kanan
     glColor3f(0.702f, 0.29f, 0.0f);
     glVertex3f(-300, 0, -25);
