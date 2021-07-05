@@ -1,3 +1,4 @@
+
 #include <windows.h>
 #ifdef APPLE
 #include <GLUT/glut.h>
@@ -16,8 +17,31 @@ float xrot = 0;
 float yrot = 0;
 float xdiff = 0;
 float ydiff = 0;
+float gesertranslasi = 0;
+float gesertranslasi2 = 0;
 bool mousedown = false;
 int is_depth;
+
+void timer(int value)
+{
+
+    if (gesertranslasi == 0) {
+        gesertranslasi = -25;
+    }
+    else if (gesertranslasi == -25) {
+        gesertranslasi = 0;
+    }
+
+    if (gesertranslasi2 == 0) {
+        gesertranslasi2 = 25;
+    }
+    else if (gesertranslasi2 == 25) {
+        gesertranslasi2 = 0;
+    }
+
+    glutPostRedisplay();
+    glutTimerFunc(1000, timer, 10);
+}
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
@@ -32,6 +56,7 @@ int main(int argc, char** argv)
     glShadeModel(GL_SMOOTH);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     glutDisplayFunc(display);
+    glutTimerFunc(1, timer, 0);
     glutKeyboardFunc(keyboard);
     glutMouseFunc(mouseButton);
     glutMotionFunc(mouseMove);
@@ -86,7 +111,7 @@ void display(void)
 
     // bangun 1 //
     glBegin(GL_POLYGON); //alas 1 
-    glColor3f(0.4, 0.4, 0.4 );
+    glColor3f(0.4, 0.4, 0.4);
     glVertex3f(-300, 0, -100); // kiri atas
     glVertex3f(-300, 0, 50); // kiri bawah
     glVertex3f(-180, 0, 50); // kanan bawah
@@ -1049,7 +1074,7 @@ void display(void)
     glBegin(GL_LINES); //kanopi atas
     glColor3f(0, 0, 0);
     glVertex3f(-350.5, 300, -25);
-    glVertex3f(-300.5, 0, -25);
+    glVertex3f(-310.5, 50, -25);
     glEnd();
 
     glBegin(GL_LINES); //kanopi atas
@@ -2394,32 +2419,6 @@ void display(void)
 
     ////////////////////////HIASAN////////////////////////////////////////
 
-    //////////////////////////////////////gagang pintu /////////////////////////////
-    glBegin(GL_LINES); //kanopi atas
-    glColor3f(0, 0, 0);
-    glVertex3f(-307, 35, -35);
-    glVertex3f(-305, 20, -35);
-    glEnd();
-
-    glBegin(GL_LINES); //kanopi atas
-    glColor3f(0, 0, 0);
-    glVertex3f(-307, 35, -15);
-    glVertex3f(-305, 20, -15);
-    glEnd();
-
-    glBegin(GL_LINES); //kanopi atas
-    glColor3f(0, 0, 0);
-    glVertex3f(-307, 35, -36);
-    glVertex3f(-305, 20, -36);
-    glEnd();
-
-    glBegin(GL_LINES); //kanopi atas
-    glColor3f(0, 0, 0);
-    glVertex3f(-307, 35, -14);
-    glVertex3f(-305, 20, -14);
-    glEnd();
-
-
     glBegin(GL_QUADS);//Papan Tulis
     glColor3f(1, 1, 1);
     glVertex3f(178, 60, -70); // kanan atas
@@ -2596,7 +2595,7 @@ void display(void)
     glEnd();
 
     glBegin(GL_POLYGON);//alas kursi
-    glColor3ub(260, 105, 30);
+    glColor3ub(180, 105, 30);
     glVertex3f(50, 10, -30); // kanan atas
     glVertex3f(60, 10, -30); // kiri atas
     glVertex3f(60, 10, -20); // kiri bawah
@@ -2834,7 +2833,106 @@ void display(void)
     }
 
     ///////////////////////////////////HIASAN////////////////////////////////////////////
+    /////////////////////////////////////////jalan///////////////////////////////////////////////
+    glBegin(GL_POLYGON); //jalan
+    glColor3f(0.3, 0.3, 0.3);
+    glVertex3f(-600, 0, 200); // kiri atas
+    glVertex3f(-600, 0, 500); // kiri bawah 
+    glVertex3f(600, 0, 500);
+    glVertex3f(600, 0, 200);
+    glEnd();
 
+    glBegin(GL_POLYGON); //marka jalan
+    glColor3f(1, 1, 1);
+    glVertex3f(-550, 1, 340);
+    glVertex3f(-550, 1, 360);
+    glVertex3f(-400, 1, 360);
+    glVertex3f(-400, 1, 340);
+    glEnd();
+
+    glBegin(GL_POLYGON); //marka jalan
+    glColor3f(1, 1, 1);
+    glVertex3f(-350, 1, 340);
+    glVertex3f(-350, 1, 360);
+    glVertex3f(-200, 1, 360);
+    glVertex3f(-200, 1, 340);
+    glEnd();
+
+    glBegin(GL_POLYGON); //marka jalan
+    glColor3f(1, 1, 1);
+    glVertex3f(-150, 1, 340);
+    glVertex3f(-150, 1, 360);
+    glVertex3f(0, 1, 360);
+    glVertex3f(0, 1, 340);
+    glEnd();
+
+    glBegin(GL_POLYGON); //marka jalan
+    glColor3f(1, 1, 1);
+    glVertex3f(50, 1, 340);
+    glVertex3f(50, 1, 360);
+    glVertex3f(200, 1, 360);
+    glVertex3f(200, 1, 340);
+    glEnd();
+
+    glBegin(GL_POLYGON); //marka jalan
+    glColor3f(1, 1, 1);
+    glVertex3f(250, 1, 340);
+    glVertex3f(250, 1, 360);
+    glVertex3f(400, 1, 360);
+    glVertex3f(400, 1, 340);
+    glEnd();
+
+    glBegin(GL_POLYGON); //marka jalan
+    glColor3f(1, 1, 1);
+    glVertex3f(450, 1, 340);
+    glVertex3f(450, 1, 360);
+    glVertex3f(600, 1, 360);
+    glVertex3f(600, 1, 340);
+    glEnd();
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////pintu //////////////////////////////////////////
+
+
+
+    glPushMatrix();
+    glTranslatef(-1.0, 0.0, gesertranslasi2);
+    glBegin(GL_QUADS);//pintu kampus kiri
+    glColor3f(0.702f, 0.29f, 0.0f);
+    glVertex3f(-300, 0, 0);
+    glVertex3f(-300, 0, -25);
+    glVertex3f(-310, 50, -25);
+    glVertex3f(-310, 50, 0);
+    glEnd();
+    glBegin(GL_LINE_LOOP);//garis pintu kiri
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(-301, 0, 0);
+    glVertex3f(-301, 0, -25);
+    glVertex3f(-311, 50, -25);
+    glVertex3f(-311, 50, 0);
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-1.0, 0.0, gesertranslasi);
+    glBegin(GL_QUADS);//pintu kampus kanan
+    glColor3f(0.702f, 0.29f, 0.0f);
+    glVertex3f(-300, 0, -25);
+    glVertex3f(-300, 0, -50);
+    glVertex3f(-310, 50, -50);
+    glVertex3f(-310, 50, -25);
+    glEnd();
+    glBegin(GL_LINE_LOOP);//garis pintu kanan
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(-301, 0, -25);
+    glVertex3f(-301, 0, -50);
+    glVertex3f(-311, 50, -50);
+    glVertex3f(-311, 50, -25);
+    glEnd();
+
+    glPopMatrix();
+    //////////////////////////////////////////////////////////////////////////////////////////
 
 
     //////////////////////////////ini penting, jangan sampai kehapus///////////////////////////////////
